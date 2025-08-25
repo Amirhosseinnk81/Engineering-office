@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">مقالات</h2>
+    <div class="row">
+        {% for blog in blogs %}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ blog.title }}</h5>
+                    <p class="card-text">{{ blog.content[:200] }}...</p>
+                    <a href="#" class="btn btn-primary btn-sm">ادامه مطلب</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p>هیچ مقاله‌ای ثبت نشده است.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}خانه - دفتر مهندسی{% endblock %}
+
+{% block content %}
+<section class="text-center py-10">
+  <h1 class="text-3xl font-bold text-blue-600">به دفتر مهندسی ما خوش آمدید</h1>
+  <p class="mt-4 text-lg text-gray-600">طراحی، محاسبات، نظارت و اجرای پروژه‌های ساختمانی</p>
+  <a href="/contact" class="mt-6 inline-block bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700">
+    درخواست مشاوره
+  </a>
+</section>
+
+<section class="grid md:grid-cols-3 gap-6 mt-10">
+  <div class="bg-white rounded-xl shadow p-6">
+    <h3 class="font-bold text-xl mb-2">طراحی معماری</h3>
+    <p class="text-gray-600">طراحی خلاقانه و مطابق ضوابط شهرسازی و معماری روز.</p>
+  </div>
+  <div class="bg-white rounded-xl shadow p-6">
+    <h3 class="font-bold text-xl mb-2">محاسبات سازه</h3>
+    <p class="text-gray-600">تحلیل و طراحی سازه‌های فلزی و بتنی با نرم‌افزارهای تخصصی.</p>
+  </div>
+  <div class="bg-white rounded-xl shadow p-6">
+    <h3 class="font-bold text-xl mb-2">تأسیسات</h3>
+    <p class="text-gray-600">طراحی تأسیسات مکانیکی و الکتریکی مطابق با استانداردها.</p>
+  </div>
+</section>
+{% endblock %}

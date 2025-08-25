@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}تماس با ما{% endblock %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto bg-white shadow p-8 rounded-xl">
+  <h1 class="text-3xl font-bold text-blue-600 mb-8 text-center">تماس با ما</h1>
+
+  <div class="grid md:grid-cols-2 gap-8">
+    <!-- اطلاعات تماس -->
+    <div>
+      <h2 class="text-xl font-bold text-gray-700 mb-4">اطلاعات دفتر</h2>
+      <p class="mb-2"><strong>آدرس:</strong> تهران، خیابان ولیعصر، کوچه نمونه، پلاک ۱۲</p>
+      <p class="mb-2"><strong>تلفن:</strong> ۰۲۱-۱۲۳۴۵۶۷۸</p>
+      <p class="mb-2"><strong>ایمیل:</strong> info@office.com</p>
+
+      <!-- نقشه گوگل -->
+      <div class="mt-6">
+        <iframe 
+          src="https://maps.google.com/maps?q=Tehran&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+          class="w-full h-64 rounded-lg shadow"></iframe>
+      </div>
+    </div>
+
+    <!-- فرم تماس -->
+    <div>
+      <h2 class="text-xl font-bold text-gray-700 mb-4">فرم ارسال پیام</h2>
+      <form method="POST" action="{{ url_for('contact') }}" class="space-y-4">
+        <div>
+          <label class="block text-gray-600 mb-1">نام و نام خانوادگی</label>
+          <input type="text" name="name" required class="w-full border rounded-lg p-2">
+        </div>
+        <div>
+          <label class="block text-gray-600 mb-1">ایمیل</label>
+          <input type="email" name="email" required class="w-full border rounded-lg p-2">
+        </div>
+        <div>
+          <label class="block text-gray-600 mb-1">پیام شما</label>
+          <textarea name="message" rows="5" required class="w-full border rounded-lg p-2"></textarea>
+        </div>
+        <button type="submit" 
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+          ارسال پیام
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,10 @@
+<h2>ویرایش مقاله</h2>
+<form method="POST">
+    <label>عنوان:</label>
+    <input type="text" name="title" value="{{ blog.title }}" required><br><br>
+
+    <label>متن:</label>
+    <textarea name="content" required>{{ blog.content }}</textarea><br><br>
+
+    <button type="submit">ذخیره تغییرات</button>
+</form>

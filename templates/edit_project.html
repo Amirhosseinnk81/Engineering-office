@@ -1,0 +1,10 @@
+<h2>ویرایش پروژه</h2>
+<form method="POST">
+    <label>عنوان:</label>
+    <input type="text" name="title" value="{{ project.title }}" required><br><br>
+
+    <label>توضیحات:</label>
+    <textarea name="description" required>{{ project.description }}</textarea><br><br>
+
+    <button type="submit">ذخیره تغییرات</button>
+</form>

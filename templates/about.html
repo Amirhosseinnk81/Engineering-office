@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}درباره ما{% endblock %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto bg-white shadow p-8 rounded-xl">
+  <h1 class="text-3xl font-bold text-blue-600 mb-6">درباره دفتر مهندسی ما</h1>
+  
+  <!-- معرفی دفتر -->
+  <p class="text-gray-700 leading-7 mb-6">
+    دفتر مهندسی ما با بیش از <span class="font-bold text-blue-600">۱۰ سال تجربه</span> 
+    در حوزه طراحی، محاسبات، نظارت و اجرای پروژه‌های ساختمانی فعالیت می‌کند. 
+    هدف ما ارائه راهکارهای نوین و مقرون‌به‌صرفه در پروژه‌های مسکونی، تجاری و اداری است.
+  </p>
+
+  <!-- رزومه کوتاه -->
+  <div class="bg-blue-50 p-6 rounded-lg mb-8">
+    <h2 class="text-xl font-bold text-blue-700 mb-3">رزومه کوتاه</h2>
+    <ul class="list-disc pr-6 text-gray-700 space-y-2">
+      <li>بیش از ۵۰ پروژه مسکونی طراحی و اجرا شده</li>
+      <li>همکاری با شرکت‌های معتبر ساختمانی و پیمانکاران برتر</li>
+      <li>دارای پروانه اشتغال نظام مهندسی در رشته عمران و معماری</li>
+      <li>تیم متخصص در سازه، معماری، برق و مکانیک</li>
+    </ul>
+  </div>
+
+  <!-- تیم -->
+  <h2 class="text-xl font-bold text-blue-700 mb-6">تیم ما</h2>
+  <div class="grid md:grid-cols-3 gap-6">
+    <!-- عضو تیم -->
+    <div class="bg-gray-50 p-4 rounded-lg shadow hover:shadow-lg transition">
+      <img src="/static/img/team1.jpg" alt="مهندس الف" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+      <h3 class="text-lg font-bold text-center">مهندس الف</h3>
+      <p class="text-gray-600 text-center">کارشناس ارشد عمران - سازه</p>
+    </div>
+
+    <div class="bg-gray-50 p-4 rounded-lg shadow hover:shadow-lg transition">
+      <img src="/static/img/team2.jpg" alt="مهندس ب" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+      <h3 class="text-lg font-bold text-center">مهندس ب</h3>
+      <p class="text-gray-600 text-center">کارشناس ارشد معماری</p>
+    </div>
+
+    <div class="bg-gray-50 p-4 rounded-lg shadow hover:shadow-lg transition">
+      <img src="/static/img/team3.jpg" alt="مهندس ج" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+      <h3 class="text-lg font-bold text-center">مهندس ج</h3>
+      <p class="text-gray-600 text-center">کارشناس ارشد تأسیسات مکانیکی</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
