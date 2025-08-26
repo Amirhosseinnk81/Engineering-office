@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request, redirect, flash , url_for , session
 import smtplib
+from flask_migrate import Migrate
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from extensions import db
 import os
 from dotenv import load_dotenv
-from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
+# from flask_sqlalchemy import SQLAlchemy
 
 
 # بارگذاری متغیرهای محیطی
@@ -15,19 +18,26 @@ app.secret_key = "mysecretkey"  # برای فلش‌مسج‌ها
 
 # ساخت دیتابیس
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# db = SQLAlchemy(app)
+UPLOAD_FOLDER = os.path.join('static', 'images')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+db.init_app(app)
+migrate = Migrate(app, db)
 
 # کلاس های دیتابیس
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String(200))
 
 class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String(200), nullable=True)
 
 
 
@@ -158,8 +168,16 @@ def add_project():
 
     title = request.form["title"]
     description = request.form["description"]
+        # گرفتن فایل
+    image_file = request.files.get("image")
+    image_filename = None
+    if image_file and image_file.filename != "":
+        filename = secure_filename(image_file.filename)
+        image_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+        image_file.save(image_path)
+        image_filename = filename  # فقط اسم فایل ذخیره میشه
 
-    new_project = Project(title=title, description=description)
+    new_project = Project(title=title, description=description, image=image_filename)
     db.session.add(new_project)
     db.session.commit()   # ✅ این خیلی مهمه
 
@@ -191,9 +209,15 @@ def add_blog():
 
     title = request.form.get("title")
     content = request.form.get("content")
+    image = None
+    if 'image' in request.files:
+        file = request.files['image']
+        if file.filename != '':
+            image = file.filename
+            file.save(os.path.join('static/images', image))
 
     try:
-        new_blog = Blog(title=title, content=content)
+        new_blog = Blog(title=title, content=content, image=image)
         db.session.add(new_blog)
         db.session.commit()   # ✅ ذخیره واقعی در دیتابیس
         flash("مقاله با موفقیت اضافه شد!", "success")

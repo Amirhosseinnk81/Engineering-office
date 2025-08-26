@@ -1,21 +1,35 @@
 {% extends "base.html" %}
+{% block title %}لیست مقالات{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
-    <h2 class="mb-4">مقالات</h2>
-    <div class="row">
-        {% for blog in blogs %}
-        <div class="col-md-6 mb-4">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">{{ blog.title }}</h5>
-                    <p class="card-text">{{ blog.content[:200] }}...</p>
-                    <a href="{{ url_for('blog_detail', blog_id=blog.id) }}" class="btn btn-primary btn-sm">ادامه مطلب</a>
-                </div>
-            </div>
+<section class="max-w-6xl mx-auto p-6">
+  <h1 class="text-3xl font-bold text-blue-700 mb-8 text-center">مقالات مهندسی</h1>
+
+  <!-- مقالات به صورت کارت -->
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for blog in blogs %}
+      <div class="bg-white shadow rounded-2xl overflow-hidden hover:shadow-lg transition duration-300">
+        
+        <!-- عکس مقاله -->
+        <img src="{{ url_for('static', filename='images/' ~ (blog.image if blog.image else 'default.jpg')) }}" 
+             alt="{{ blog.title }}" 
+             class="w-full h-48 object-cover">
+
+        <!-- جزئیات -->
+        <div class="p-4">
+          <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ blog.title }}</h2>
+          <p class="text-gray-600 text-sm mb-4">
+            {{ blog.content[:120] }}{% if blog.content|length > 120 %}...{% endif %}
+          </p>
+
+          <!-- دکمه مشاهده جزئیات -->
+          <a href="{{ url_for('blog_detail', blog_id=blog.id) }}" 
+             class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+             ادامه مطلب
+          </a>
         </div>
-        {% else %}
-        <p>هیچ مقاله‌ای ثبت نشده است.</p>
-        {% endfor %}
-    </div>
-</div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}

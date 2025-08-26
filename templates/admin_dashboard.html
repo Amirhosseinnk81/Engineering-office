@@ -5,11 +5,14 @@
 <section class="max-w-5xl mx-auto bg-white shadow p-8 rounded-xl">
   <h1 class="text-2xl font-bold text-blue-600 mb-6">پنل مدیریت</h1>
 
-  <!-- فرم افزودن پروژه -->
   <h2 class="text-xl font-bold mb-2">افزودن پروژه جدید</h2>
-  <form method="POST" action="{{ url_for('add_project') }}" class="mb-6">
+  <form method="POST" action="{{ url_for('add_project') }}" enctype="multipart/form-data" class="mb-6">
     <input type="text" name="title" placeholder="عنوان پروژه" required class="w-full mb-2 p-2 border rounded">
     <textarea name="description" placeholder="توضیحات پروژه" required class="w-full mb-2 p-2 border rounded"></textarea>
+
+    <!-- انتخاب عکس -->
+    <input type="file" name="image" accept="image/*" class="w-full mb-2 p-2 border rounded">
+
     <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">افزودن پروژه</button>
   </form>
 
@@ -19,49 +22,62 @@
 
   <!-- فرم افزودن مقاله -->
   <h2 class="text-xl font-bold mb-2">افزودن مقاله جدید</h2>
-  <form method="POST" action="{{ url_for('add_blog') }}" class="mb-6">
+  <form method="POST" action="{{ url_for('add_blog') }}" enctype="multipart/form-data" class="mb-6">
     <input type="text" name="title" placeholder="عنوان مقاله" required class="w-full mb-2 p-2 border rounded">
     <textarea name="content" placeholder="متن مقاله" required class="w-full mb-2 p-2 border rounded"></textarea>
+
+    <!-- آپلود عکس -->
+    <input type="file" name="image" accept="image/*" class="w-full mb-2 p-2 border rounded">
+
     <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">افزودن مقاله</button>
   </form>
 
 
 
-<h2>لیست پروژه‌ها</h2>
-<table border="1">
+  <h2>لیست پروژه‌ها</h2>
+  <table border="1">
     <tr>
-        <th>عنوان</th>
-        <th>توضیحات</th>
-        <th>عملیات</th>
+      <th>عکس</th>
+      <th>عنوان</th>
+      <th>توضیحات</th>
+      <th>عملیات</th>
     </tr>
     {% for project in projects %}
     <tr>
-        <td>{{ project.title }}</td>
-        <td>{{ project.description }}</td>
-        <td>
-            <a href="{{ url_for('edit_project', project_id=project.id) }}">✏️ ویرایش</a>
-        </td>
+      <!-- <td>
+        {% if project.image %}
+        <img src="{{ url_for('static', filename='images/' ~ project.image) }}" width="80">
+        {% else %}
+        بدون عکس
+        {% endif %}
+      </td> -->
+      <td>{{ project.title }}</td>
+      <td>{{ project.description }}</td>
+      <td>
+        <a href="{{ url_for('edit_project', project_id=project.id) }}">✏️ ویرایش</a>
+      </td>
     </tr>
     {% endfor %}
-</table>
+  </table>
+  <hr class="my-6">
 
-<h2>لیست مقالات</h2>
-<table border="1">
+  <h2>لیست مقالات</h2>
+  <table border="1">
     <tr>
-        <th>عنوان</th>
-        <th>متن</th>
-        <th>عملیات</th>
+      <th>عنوان</th>
+      <th>متن</th>
+      <th>عملیات</th>
     </tr>
     {% for blog in blogs %}
     <tr>
-        <td>{{ blog.title }}</td>
-        <td>{{ blog.content[:50] }}...</td>
-        <td>
-            <a href="{{ url_for('edit_blog', blog_id=blog.id) }}">✏️ ویرایش</a>
-        </td>
+      <td>{{ blog.title }}</td>
+      <td>{{ blog.content[:50] }}...</td>
+      <td>
+        <a href="{{ url_for('edit_blog', blog_id=blog.id) }}">✏️ ویرایش</a>
+      </td>
     </tr>
     {% endfor %}
-</table>
+  </table>
 
 
   <a href="{{ url_for('admin_logout') }}" class="inline-block mt-6 text-red-600">خروج</a>
