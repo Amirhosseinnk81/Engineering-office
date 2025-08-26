@@ -10,6 +10,50 @@
   </a>
 </section>
 
+<div class="container mt-4">
+
+    <!-- بخش پروژه‌ها -->
+    <h2 class="mb-4">آخرین پروژه‌ها</h2>
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text text-muted">{{ project.description[:120] }}...</p>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="/projects" class="btn btn-sm btn-outline-primary">مشاهده همه</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p>هیچ پروژه‌ای ثبت نشده است.</p>
+        {% endfor %}
+    </div>
+
+    <hr class="my-5">
+
+    <!-- بخش مقالات -->
+    <h2 class="mb-4">آخرین مقالات</h2>
+    <div class="row">
+        {% for blog in blogs %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ blog.title }}</h5>
+                    <p class="card-text">{{ blog.content[:120] }}...</p>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="/blog" class="btn btn-sm btn-outline-success">مشاهده همه</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p>هیچ مقاله‌ای ثبت نشده است.</p>
+        {% endfor %}
+    </div>
+
 <section class="grid md:grid-cols-3 gap-6 mt-10">
   <div class="bg-white rounded-xl shadow p-6">
     <h3 class="font-bold text-xl mb-2">طراحی معماری</h3>

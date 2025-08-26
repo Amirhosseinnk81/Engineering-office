@@ -66,7 +66,9 @@ blog_list = []
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    latest_projects = Project.query.order_by(Project.id.desc()).limit(3).all()
+    latest_blogs = Blog.query.order_by(Blog.id.desc()).limit(3).all()
+    return render_template("home.html" , projects=latest_projects, blogs=latest_blogs)
 
 @app.route("/about")
 def about():
@@ -84,14 +86,9 @@ def projects():
 
 @app.route("/projects/<int:project_id>")
 def project_detail(project_id):
-    # اینجا می‌تونی دیتای پروژه رو از دیتابیس یا لیست بخونی
-    projects = {
-        1: {"title": "برج مسکونی الف", "desc": "جزئیات کامل پروژه برج ۲۰ طبقه ..."},
-        2: {"title": "مجتمع تجاری ب", "desc": "جزئیات کامل مجتمع تجاری ..."},
-        3: {"title": "ساختمان اداری ج", "desc": "جزئیات کامل ساختمان اداری ..."}
-    }
-    project = projects.get(project_id, {"title": "پروژه یافت نشد", "desc": "چنین پروژه‌ای وجود ندارد."})
+    project = Project.query.get_or_404(project_id)
     return render_template("project_detail.html", project=project)
+
 
 @app.route("/blog")
 def blog():
@@ -101,21 +98,7 @@ def blog():
 
 @app.route("/blog/<int:blog_id>")
 def blog_detail(blog_id):
-    blogs = {
-        1: {
-            "title": "اصول طراحی معماری پایدار",
-            "content": "اینجا متن کامل مقاله مربوط به معماری پایدار قرار می‌گیرد..."
-        },
-        2: {
-            "title": "نکات کلیدی در محاسبات سازه",
-            "content": "اینجا متن کامل مقاله محاسبات سازه قرار می‌گیرد..."
-        },
-        3: {
-            "title": "طراحی تاسیسات مکانیکی کارآمد",
-            "content": "اینجا متن کامل مقاله تاسیسات مکانیکی قرار می‌گیرد..."
-        }
-    }
-    blog = blogs.get(blog_id, {"title": "مقاله یافت نشد", "content": "چنین مقاله‌ای وجود ندارد."})
+    blog = Blog.query.get_or_404(blog_id)
     return render_template("blog_detail.html", blog=blog)
 
 @app.route("/contact", methods=["GET", "POST"])

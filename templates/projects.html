@@ -10,9 +10,7 @@
                     <h5 class="card-title">{{ project.title }}</h5>
                     <p class="card-text text-muted">{{ project.description }}</p>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">شناسه: {{ project.id }}</small>
-                </div>
+                <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-primary btn-sm">ادامه مطلب</a>
             </div>
         </div>
         {% else %}

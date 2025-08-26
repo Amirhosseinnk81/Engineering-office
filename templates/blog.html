@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ blog.title }}</h5>
                     <p class="card-text">{{ blog.content[:200] }}...</p>
-                    <a href="#" class="btn btn-primary btn-sm">ادامه مطلب</a>
+                    <a href="{{ url_for('blog_detail', blog_id=blog.id) }}" class="btn btn-primary btn-sm">ادامه مطلب</a>
                 </div>
             </div>
         </div>
