@@ -1,4 +1,6 @@
-# Byte-compiled / optimized / DLL files
+# =======================
+# Python / Flask
+# =======================
 __pycache__/
 *.py[cod]
 *$py.class
@@ -8,50 +10,57 @@ venv/
 env/
 .venv/
 
-# Flask instance folder
+# Flask instance folder (local configs, secrets)
 instance/
 
-# Pytest cache
+# Environment variables
+*.env
+.env.*
+
+# =======================
+# Database files
+# =======================
+*.sqlite3
+*.db
+*.db-journal
+
+# =======================
+# Reports & Logs
+# =======================
+*.log
+logs/
+reports/
+daily_reports/
+*.docx
+*.xlsx
+*.pdf
+
+# =======================
+# Test / Cache
+# =======================
 .pytest_cache/
-
-# mypy cache
 .mypy_cache/
-
-# Coverage reports
-htmlcov/
 .coverage
+htmlcov/
 
-# Distribution / packaging
-.Python
+# =======================
+# Distribution / Packaging
+# =======================
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
 *.egg-info/
-.installed.cfg
-*.egg
+.eggs/
 
-# IDEs and editors
+# =======================
+# IDEs / Editors
+# =======================
 .vscode/
 .idea/
-*.swp
-*.swo
 *.sublime-project
 *.sublime-workspace
 
-# Logs
-*.log
-
-# OS files
+# =======================
+# OS Files
+# =======================
 .DS_Store
 Thumbs.db
-
-init_db.py
-extensions.py
